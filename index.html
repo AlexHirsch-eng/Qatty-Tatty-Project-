@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Qatty Tatty – Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+
+    <!-- Верхняя полоса -->
+    <header class="top-nav">
+        <button class="user-pill" onclick="location.href='menu.html'">
+            <span class="avatar-circle"></span>
+            <span class="user-pill-text">HI ARSEN!</span>
+        </button>
+
+        <div class="logo-mid">
+            Qatty Tatty
+        </div>
+
+        <div class="top-right">
+            <div class="lang-select">
+                <span>English</span>
+                <span class="lang-arrow">▾</span>
+            </div>
+
+            <div class="search-small">
+                <input type="text" placeholder="Search..." />
+            </div>
+
+            <!-- 🔹 КНОПКИ LOGIN / REGISTER -->
+            <div class="auth-buttons">
+                <button class="auth-btn" onclick="location.href='login.html'">
+                    Login
+                </button>
+                <button class="auth-btn" onclick="location.href='login.html'">
+                    Register
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Контент страницы -->
+    <main class="main-area">
+
+        <!-- Полоса с фильтром и поиском -->
+        <div class="filter-bar">
+            <div class="filter-label">Desserts are waiting for you</div>
+            <div class="filter-controls">
+                <select>
+                    <option>Filter</option>
+                    <option>Sweet</option>
+                    <option>Vegan</option>
+                </select>
+                <input type="text" placeholder="Search..." />
+            </div>
+        </div>
+
+        <!-- Сетка панкейков -->
+        <section class="pancake-grid">
+            <article class="pancake-card">
+                <p class="pancake-name">Pancake Name</p>
+                <img src="pancake_img.png" alt="Pancake">
+            </article>
+            <article class="pancake-card">
+                <p class="pancake-name">Pancake Name</p>
+                <img src="pancake_img.png" alt="Pancake">
+            </article>
+            <article class="pancake-card">
+                <p class="pancake-name">Pancake Name</p>
+                <img src="pancake_img.png" alt="Pancake">
+            </article>
+            <article class="pancake-card">
+                <p class="pancake-name">Pancake Name</p>
+                <img src="pancake_img.png" alt="Pancake">
+            </article>
+            <article class="pancake-card">
+                <p class="pancake-name">Pancake Name</p>
+                <img src="pancake_img.png" alt="Pancake">
+            </article>
+            <article class="pancake-card">
+                <p class="pancake-name">Pancake Name</p>
+                <img src="pancake_img.png" alt="Pancake">
+            </article>
+        </section>
+
+        <h1 class="footer-logo">QaTTy TaTTy</h1>
+    </main>
+
+    <!-- Нижняя полоса -->
+    <footer class="bottom-bar">
+        <span>About us</span>
+        <span>To contact with us +77005292008</span>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Qatty Tatty - Мой Профиль</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="user-info">
+                <div class="avatar-circle"></div>
+                <h3>HI, ARSEN!</h3>
+            </div>
+            <nav class="side-nav">
+                <ul>
+                    <li class="active">Profile Settings</li>
+                    <li onclick="location.href='menu.html'">Back to Menu</li>
+                    <li>My Cart</li>
+                    <li>Log Out</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section class="profile-card">
+                <h2>Personal Information</h2>
+                <div class="info-grid">
+                    <div class="info-item"><strong>Full Name:</strong> <span>Bakhitbekov Arsen</span></div>
+                    <div class="info-item"><strong>Email:</strong> <span>arsen@example.kz</span></div>
+                    <div class="info-item"><strong>Phone:</strong> <span>+7 707 123 45 67</span></div>
+                    <div class="info-item"><strong>Address:</strong> <span>Rayimbeka 162a</span></div> <div class="info-item"><strong>Birth Date:</strong> <span>24.10.1988</span></div>
+                </div>
+                <button class="btn-secondary">Edit Profile</button>
+            </section>
+
+            <section class="order-history">
+                <h2>Order History</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#001</td>
+                            <td>2025-01-01</td>
+                            <td>10.00 $</td>
+                            <td><span class="status-badge delivered">Delivered</span></td>
+                        </tr>
+                        <tr>
+                            <td>#004</td>
+                            <td>2025-01-01</td>
+                            <td>10.00 $</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

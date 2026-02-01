@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Qatty Tatty - Доставка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="delivery-container">
+        <header class="simple-header">
+            <h1>Checkout & Delivery</h1>
+        </header>
+
+        <div class="delivery-layout">
+            <section class="delivery-form">
+                <h3>Delivery Details</h3>
+                <form>
+                    <label>Street & Building</label>
+                    <input type="text" class="input-field" placeholder="e.g., Abay 109A" required>
+                    
+                    <label>Apartment/Office</label>
+                    <input type="text" class="input-field" placeholder="Apt 42">
+                    
+                    <label>Notes for Courier</label>
+                    <textarea class="input-field" placeholder="Call me when you arrive"></textarea>
+                    
+                    <div class="payment-methods">
+                        <h4>Payment Method</h4>
+                        <label><input type="radio" name="pay" checked> Kaspi.kz (QR)</label> <label><input type="radio" name="pay"> Cash to Courier</label>
+                    </div>
+
+                    <button type="submit" class="btn-main">Confirm & Pay</button>
+                </form>
+            </section>
+
+            <aside class="order-summary">
+                <h3>Your Order</h3>
+                <div class="summary-item">
+                    <span>Classic Pancake (x2)</span>
+                    <span>10.00 $</span>
+                </div>
+                <div class="summary-item">
+                    <span>Delivery Fee</span>
+                    <span>2.00 $</span>
+                </div>
+                <hr>
+                <div class="total">
+                    <strong>Total:</strong>
+                    <strong>12.00 $</strong>
+                </div>
+            </aside>
+        </div>
+    </div>
+</body>
+</html>
