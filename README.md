@@ -11,7 +11,7 @@ It is intended both as a study project and as a realistic prototype that can be 
   - Pancake cards with category and price
   - Shared menu data between pages (stored in `localStorage`)
 
-- 🔎 **Search & filter**
+- 🔎  **Search & filter**
   - Live search by dessert name
   - Filter by category (Sweet / Salty / Vegan)
 
