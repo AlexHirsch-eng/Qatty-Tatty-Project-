@@ -1,415 +1,740 @@
+/* Reset base margins and simplify box model */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #bcbcbc;
-    color: #333;
+/* ---------- THEME VARIABLES (light theme by default) ---------- */
+:root {
+  --bg-gradient-from: #ffecd2;
+  --bg-gradient-to: #fcb69f;
+
+  --card-bg: rgba(255, 255, 255, 0.96);
+  --surface-soft: #fff7f0;
+  --surface-accent: #ffe2c6;
+
+  --text-main: #3b2a20;
+  --text-muted: #7a5a47;
+  --border-soft: #e0c1a5;
+  --accent: #e19b73;
 }
+
+/* Same variables for dark theme, toggled via data-theme="dark" */
+body[data-theme="dark"] {
+  --bg-gradient-from: #22182b;
+  --bg-gradient-to: #161827;
+
+  --card-bg: rgba(21, 20, 32, 0.96);
+  --surface-soft: #262335;
+  --surface-accent: #3a304b;
+
+  --text-main: #f6eae0;
+  --text-muted: #c2b2d3;
+  --border-soft: #4c3f66;
+  --accent: #ffb86c;
+}
+
+/* Base body styles */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  min-height: 100vh;
+  background: radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.5),
+      transparent 55%
+    ),
+    linear-gradient(135deg, var(--bg-gradient-from), var(--bg-gradient-to));
+  color: var(--text-main);
+}
+
+/* ---------- MAIN APP CONTAINER ---------- */
 
 .app-shell {
-    max-width: 1200px;
-    margin: 0 auto;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  width: 92%;
+  max-width: 1360px; /* Wider for desktop view */
+  min-height: calc(100vh - 64px);
+  background: var(--card-bg);
+  border-radius: 32px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  padding: 20px 26px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  margin: 32px auto;
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-/* ===== Верхняя панель ===== */
-
-.top-nav,
-.top-nav-simple {
-    background-color: #999;
-    padding: 10px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-style: italic;
+/* Slightly larger shell on very wide screens */
+@media (min-width: 1600px) {
+  .app-shell {
+    max-width: 1480px;
+  }
 }
 
-.top-nav-simple {
-    justify-content: space-between;
+/* ---------- TOP BAR ---------- */
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.logo-mid {
-    font-family: "Times New Roman", serif;
-    font-size: 24px;
+.top-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
+/* ---------- THEME TOGGLE ---------- */
+
+.theme-toggle {
+  width: 48px;
+  height: 24px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-soft);
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.theme-toggle:hover {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.03);
+}
+
+.toggle-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+/* Toggle knob position in dark theme – shifted to the right */
+body[data-theme="dark"] .toggle-circle {
+  transform: translateX(22px);
+}
+
+/* ---------- USER PILL ---------- */
+
+.user-pill {
+  border: none;
+  border-radius: 999px;
+  background: var(--surface-accent);
+  padding: 6px 14px;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--text-main);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Center: logo */
+.top-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.logo-main {
+  font-family: "Lucida Handwriting", "Brush Script MT", cursive;
+  font-size: 28px;
+}
+
+/* Right part of header */
 .top-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .lang-select {
-    background: #d9d9d9;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-muted);
 }
 
 .lang-arrow {
-    font-size: 10px;
+  font-size: 10px;
 }
 
-.search-small input {
-    height: 24px;
-    border: none;
-    padding: 3px 8px;
-    background: #e6e6e6;
+/* Text buttons on top-right */
+.top-link {
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--text-main);
+  padding: 2px 0;
 }
 
-/* Кнопка HI ARSEN */
-
-.user-pill {
-    border: none;
-    background: #d9d9d9;
-    padding: 3px 14px;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
+.top-link:hover {
+  opacity: 0.8;
 }
 
-.user-pill-text {
-    font-size: 14px;
-    font-style: italic;
+/* ---------- TAGLINE + SEARCH ---------- */
+
+.top-inputs {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
+  gap: 14px;
+  margin-top: 14px;
 }
 
-.avatar-circle {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: #e6e6e6;
+/* Shared style for tagline and search input */
+.tagline-input,
+.search-input {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  padding: 9px 16px;
+  font-size: 14px;
+  background: var(--surface-soft);
+  color: var(--text-main);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
-/* ===== Низ ===== */
-
-.bottom-bar {
-    background-color: #999;
-    padding: 10px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-style: italic;
-    margin-top: auto;
+/* Tagline is more muted */
+.tagline-input {
+  color: var(--text-muted);
 }
 
-/* ===== Общие зоны контента ===== */
-
-.main-area {
-    background: #d9d9d9;
-    padding: 20px 40px 40px;
+.tagline-input:focus,
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(225, 155, 115, 0.35);
 }
 
-/* Лого внизу */
+/* ---------- FILTER ROW ---------- */
 
-.footer-logo {
-    font-family: "Times New Roman", serif;
-    font-size: 40px;
-    text-align: center;
-    margin-top: 40px;
+.filters-row {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
 }
 
-/* ===== Фильтр + поиск ===== */
-
-.filter-bar {
-    background: #c7c7c7;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-style: italic;
+/* Filter <select> – left side */
+.filter-select {
+  min-width: 170px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  padding: 8px 14px;
+  font-size: 13px;
+  background: var(--surface-soft);
+  color: var(--text-main);
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%),
+    linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+  background-position: calc(100% - 16px) 11px, calc(100% - 10px) 11px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
 }
 
-.filter-label {
-    font-size: 14px;
+/* Container with "Open full menu" and "Delivery" buttons */
+.filters-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
-.filter-controls {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+/* Text buttons on the right of filter row */
+.filter-menu-btn {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--text-main);
+  position: relative;
 }
 
-.filter-controls select,
-.filter-controls input {
-    height: 26px;
-    border: none;
-    padding: 3px 8px;
-    background: #e6e6e6;
+/* Small underline animation on hover */
+.filter-menu-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.18s ease-out;
 }
 
-/* ===== Сетка панкейков ===== */
-
-.pancake-grid {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+.filter-menu-btn:hover::after {
+  transform: scaleX(1);
 }
 
+/* ---------- CARDS GRID ---------- */
+
+.cards-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  padding-bottom: 12px;
+}
+
+/* Single pancake card */
 .pancake-card {
-    background: #f5f5f5;
-    padding: 14px;
-    border-radius: 4px;
-    text-align: center;
+  background: var(--surface-soft);
+  border-radius: 18px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
+.pancake-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+/* Pancake image */
 .pancake-card img {
-    width: 100%;
-    max-width: 160px;
+  width: 100%;
+  border-radius: 14px;
+  object-fit: cover;
 }
 
+/* Pancake name */
 .pancake-name {
-    margin-bottom: 8px;
-    font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  color: var(--text-main);
+  font-weight: 600;
 }
 
-/* ===== Макет с сайдбаром ===== */
-
-.layout-with-sidebar {
-    display: flex;
-    flex: 1;
+/* Category text */
+.pancake-category {
+  font-size: 11px;
+  color: var(--text-muted);
 }
 
-.sidebar {
-    width: 220px;
-    background: #d3d3d3;
-    padding: 20px 15px;
+/* Placeholder when nothing found */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
-.sidebar-user {
-    text-align: center;
-    margin-bottom: 20px;
+/* Small info text about number of items */
+.results-info {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
 }
 
-.big-avatar {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 10px;
-    border-radius: 50%;
-    background: #e6e6e6;
+/* ---------- BOTTOM BAR ---------- */
+
+.bottom-wrapper {
+  margin-top: auto;
 }
 
-.sidebar-name {
-    font-weight: bold;
-    font-style: italic;
+/* Logo at bottom center */
+.bottom-logo {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 6px 0 4px;
 }
 
-.sidebar-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Colored band at the bottom */
+.bottom-bar {
+  background: var(--surface-accent);
+  margin: 0 -26px -20px;
+  padding: 10px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-main);
 }
 
-.sidebar-nav li {
-    padding: 6px 0;
-    cursor: pointer;
-    font-size: 14px;
+/* Link on bottom-left */
+.about-link {
+  border: none;
+  background: transparent;
+  font-size: 11px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--text-main);
 }
 
-.sidebar-nav li:hover {
-    text-decoration: underline;
+.contact-text {
+  text-align: right;
 }
 
-.sidebar-footer {
-    margin-top: 30px;
-    text-align: center;
+/* ---------- PROFILE SIDE PANEL ---------- */
+
+.profile-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100%;
+  background: var(--surface-soft);
+  border-left: 1px solid var(--border-soft);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transform: translateX(100%);
+  transition: transform 0.25s ease-out;
+  font-size: 12px;
+  z-index: 5;
 }
 
-.help-link {
-    background: none;
-    border: none;
-    text-decoration: underline;
-    cursor: pointer;
-    font-style: italic;
+.profile-panel.open {
+  transform: translateX(0);
 }
 
-.main-area-with-sidebar {
-    flex: 1;
+/* Close button for side panel */
+.close-profile {
+  align-self: flex-end;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-/* ===== Админка ===== */
-
-.admin-main {
-    background: #d9d9d9;
+/* One info row inside side panel */
+.profile-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.admin-title {
-    background: #c0c0c0;
-    padding: 10px;
-    text-align: center;
-    margin: 0;
-    margin-bottom: 30px;
-    font-style: italic;
+.profile-label {
+  font-size: 11px;
+  color: var(--text-muted);
 }
 
-.admin-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
+.profile-value {
+  font-size: 12px;
+  color: var(--text-main);
 }
 
-.admin-card {
-    background: #eaeaea;
-    padding: 20px;
-    border-radius: 4px;
-    font-size: 14px;
+/* Button to open full profile page */
+.primary-profile-btn {
+  margin-top: 10px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
 }
 
-.admin-report {
-    background: #eaeaea;
-    padding: 20px;
-    border-radius: 4px;
-    width: 60%;
-    margin: 0 auto;
-    text-align: left;
+/* ---------- GENERIC FORM STYLES (login / delivery / admin) ---------- */
+
+.page-title {
+  margin-top: 18px;
+  font-size: 24px;
+  text-align: center;
+  color: var(--text-main);
 }
 
-/* Кнопки */
-
-.btn-main {
-    margin-top: 10px;
-    padding: 6px 14px;
-    border: none;
-    background: #999;
-    color: #000;
-    cursor: pointer;
-    font-style: italic;
+.page-subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  text-align: center;
+  color: var(--text-muted);
 }
 
-.btn-danger {
-    background: #c96;
+.form {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* ===== Авторизация / регистрация ===== */
-
-.auth-main {
-    background: #d9d9d9;
-    padding: 40px;
-    display: flex;
-    gap: 60px;
-    align-items: center;
-    justify-content: center;
+.form label {
+  font-size: 11px;
+  color: var(--text-main);
 }
 
-.auth-left {
-    text-align: center;
+/* Inputs/selects/textarea for all forms */
+.form input,
+.form select,
+.form textarea {
+  margin-top: 4px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  padding: 8px 10px;
+  font-size: 13px;
+  background: var(--surface-soft);
+  color: var(--text-main);
 }
 
-.auth-pancake {
-    max-width: 260px;
-    display: block;
-    margin: 0 auto 20px;
+.form textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
-.logo-big {
-    font-family: "Times New Roman", serif;
-    font-size: 48px;
+/* Primary button (orange) */
+.primary-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-size: 14px;
+  background: var(--accent);
+  color: #ffffff;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.auth-right {
-    width: 320px;
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
-.auth-title {
-    margin-top: 0;
+/* Secondary button (pale) */
+.secondary-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 9px 12px;
+  font-size: 13px;
+  background: var(--surface-accent);
+  color: var(--text-main);
+  cursor: pointer;
+  width: 100%;
 }
 
-.auth-form {
-    margin-top: 10px;
+/* Row of two or more buttons */
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.input-field {
-    margin-bottom: 10px;
+.info-text-small {
+  margin-top: 10px;
+  font-size: 11px;
+  text-align: center;
+  color: var(--text-muted);
 }
 
-.input-field label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 2px;
+/* ---------- ADMIN PAGE ---------- */
+
+.admin-layout {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+  gap: 14px;
+  font-size: 11px;
 }
 
-.input-field input {
-    width: 100%;
-    height: 26px;
-    border: none;
-    padding: 3px 8px;
-    background: #e6e6e6;
+/* Each admin block (form or table) */
+.admin-section {
+  background: var(--surface-soft);
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.login-prompt {
-    font-size: 13px;
-    margin: 10px 0 14px;
+.admin-section-title {
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: var(--text-main);
 }
 
-.link-inline {
-    color: inherit;
-    text-decoration: underline;
+/* Menu table in admin */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
 }
 
-.auth-submit {
-    margin-top: 8px;
+.admin-table th,
+.admin-table td {
+  border: 1px solid var(--border-soft);
+  padding: 5px 6px;
+  text-align: left;
 }
 
-/* Небольшая адаптивность */
+.admin-table thead {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Container for action buttons inside table */
+.admin-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.admin-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 3px 7px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+/* Colors for buttons inside table */
+.admin-btn.primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.admin-btn.secondary {
+  background: var(--surface-accent);
+  color: var(--text-main);
+}
+
+/* Text box with simple report in admin */
+.report-box {
+  margin-top: 8px;
+  padding: 8px 9px;
+  border-radius: 12px;
+  background: var(--surface-accent);
+  font-size: 11px;
+  color: var(--text-main);
+}
+
+/* ---------- PROFILE PAGE ---------- */
+
+.profile-page-block {
+  margin-top: 18px;
+  background: var(--surface-soft);
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-page-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+/* ---------- DELIVERY PAGE ---------- */
+
+.delivery-message {
+  margin-top: 12px;
+  font-size: 11px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* ---------- RESPONSIVE (MOBILE) ---------- */
 
 @media (max-width: 900px) {
-    .pancake-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .app-shell {
+    border-radius: 0;
+    margin: 0;
+    min-height: 100vh;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .top-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bottom-bar {
+    margin: 0 -26px -14px;
+  }
+
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
-@media (max-width: 700px) {
-    .pancake-grid {
-        grid-template-columns: 1fr;
-    }
+/* ================= AUTH (LOGIN / REGISTRATION) ================= */
 
-    .auth-main {
-        flex-direction: column;
-    }
-
-    .layout-with-sidebar {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .main-area-with-sidebar {
-        width: 100%;
-    }
+/* Wrapper for login & registration blocks */
+.auth-block {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--surface-soft);
+  border-radius: 18px;
+  border: 1px solid var(--border-soft);
 }
 
-
-.auth-buttons {
-    display: flex;
-    gap: 8px;
+/* Section title inside auth blocks */
+.auth-title {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--text-main);
 }
 
-.auth-btn {
-    height: 26px;
-    padding: 0 10px;
-    border: none;
-    background: #d9d9d9;
-    cursor: pointer;
-    font-size: 13px;
-    font-style: italic;
+/* Small text between login and register */
+.auth-divider {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  text-align: center;
+  color: var(--text-muted);
 }
 
-.auth-btn:hover {
-    background: #cfcfcf;
+/* Block with admin keyword input (по умолчанию мы его скрываем классом .hidden) */
+.admin-key-block {
+  margin-top: 6px;
+}
+
+.admin-key-hint {
+  margin-top: 2px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Message under forms (errors / success) */
+.auth-message {
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* Error state */
+.auth-message.error {
+  color: #c0392b;
+}
+
+/* Success state */
+.auth-message.success {
+  color: #2ecc71;
+}
+
+/* Simple helper class to hide blocks (used for registration and admin-key) */
+.hidden {
+  display: none;
 }

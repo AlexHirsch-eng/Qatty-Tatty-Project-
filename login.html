@@ -1,73 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Qatty Tatty – Registration</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Qatty Tatty – Login / Registration</title>
+  <!-- Общие стили проекта -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-<div class="app-shell">
 
-    <header class="top-nav-simple">
-        <span>Support</span>
-        <div class="lang-select">
-            <span>English</span>
-            <span class="lang-arrow">▾</span>
-        </div>
+<!-- data-page говорит script.js, какую init-функцию запускать -->
+<body data-page="login">
+  <div class="app-shell">
+    <!-- Верхняя панель -->
+    <header class="top-bar">
+      <div class="top-left">
+        <!-- Переключатель темы (light / dark) -->
+        <button class="theme-toggle" type="button" aria-label="Toggle theme">
+          <span class="toggle-circle"></span>
+        </button>
+      </div>
+
+      <!-- Логотип по центру -->
+      <div class="top-center">
+        <span class="logo-main">Qatty Tatty</span>
+      </div>
+
+      <div class="top-right">
+        <!-- Кнопка возврата на главную -->
+        <button
+          class="top-link"
+          type="button"
+          onclick="location.href='index.html'"
+        >
+          Main
+        </button>
+      </div>
     </header>
 
-    <main class="auth-main">
-        <section class="auth-left">
-            <img src="large_pancake.png" alt="Pancake" class="auth-pancake">
-            <div class="logo-big">Qatty Tatty</div>
-        </section>
+    <!-- Заголовок страницы -->
+    <h1 class="page-title">Welcome to Qatty Tatty</h1>
+    <p class="page-subtitle">
+      Login to your account or create a new one
+    </p>
 
-        <section class="auth-right">
-            <h2 class="auth-title">Registration</h2>
+    <!-- ================== БЛОК ЛОГИНА ================== -->
+    <section class="auth-block">
+      <h2 class="auth-title">Login</h2>
 
-            <form class="auth-form">
-                <div class="input-field">
-                    <label>Email or Username</label>
-                    <input type="text" name="username">
-                </div>
-                <div class="input-field">
-                    <label>Phone number</label>
-                    <input type="text" name="phone">
-                </div>
-                <div class="input-field">
-                    <label>Date of birth</label>
-                    <input type="date" name="dob">
-                </div>
-                <div class="input-field">
-                    <label>Password</label>
-                    <input type="password" name="password">
-                </div>
+      <!-- Форма логина: email + password + (скрытый) admin keyword -->
+      <form id="login-form" class="form">
+        <label>
+          Email
+          <input
+            type="email"
+            id="login-email"
+            placeholder="you@example.com"
+            required
+          />
+        </label>
 
-                <p class="login-prompt">
-                    Already have an account?
-                    <a href="#" class="link-inline">Log in</a>
-                </p>
+        <label>
+          Password
+          <input
+            type="password"
+            id="login-password"
+            placeholder="Your password"
+            required
+          />
+        </label>
 
-                <div class="input-field">
-                    <label>Email or Username</label>
-                    <input type="text" name="login_username">
-                </div>
-                <div class="input-field">
-                    <label>Password</label>
-                    <input type="password" name="login_password">
-                </div>
+        <!-- Блок для admin keyword.
+             Изначально скрыт (класс hidden). Появится после первого клика
+             по кнопке "Login as admin". -->
+        <div id="admin-key-block" class="admin-key-block hidden">
+          <label>
+            Admin keyword
+            <input
+              type="password"
+              id="admin-key"
+              placeholder="Enter admin keyword"
+            />
+          </label>
+          <p class="admin-key-hint">
+            Required only when you login as admin.
+          </p>
+        </div>
 
-                <button type="submit" class="btn-main auth-submit">Submit</button>
-            </form>
-        </section>
-    </main>
+        <!-- Две кнопки как раньше: логин как пользователь / как админ -->
+        <div class="button-row">
+          <button id="login-user" class="primary-btn" type="button">
+            Login as user
+          </button>
+          <button id="login-admin" class="secondary-btn" type="button">
+            Login as admin
+          </button>
+        </div>
 
-    <footer class="bottom-bar">
-        <span>About us</span>
-        <span>To contact with us +77005292008</span>
-    </footer>
-</div>
+        <!-- Кнопка открытия регистрации -->
+        <div class="auth-divider">Don't have an account?</div>
+        <button id="show-register" class="secondary-btn" type="button">
+          Register
+        </button>
+      </form>
+    </section>
 
-<script src="script.js"></script>
+    <!-- ================== БЛОК РЕГИСТРАЦИИ (СКРЫТ) ================== -->
+    <section id="register-section" class="auth-block hidden">
+      <h2 class="auth-title">Create account</h2>
+
+      <form id="register-form" class="form">
+        <label>
+          Name
+          <input type="text" id="reg-name" placeholder="John" required />
+        </label>
+
+        <label>
+          Surname
+          <input type="text" id="reg-surname" placeholder="Doe" required />
+        </label>
+
+        <label>
+          Phone number
+          <input type="tel" id="reg-phone" placeholder="+7700..." required />
+        </label>
+
+        <label>
+          Address
+          <input
+            type="text"
+            id="reg-address"
+            placeholder="City, street, house"
+            required
+          />
+        </label>
+
+        <label>
+          Date of birth
+          <input type="date" id="reg-dob" required />
+        </label>
+
+        <label>
+          Email
+          <input
+            type="email"
+            id="reg-email"
+            placeholder="you@example.com"
+            required
+          />
+        </label>
+
+        <label>
+          Password
+          <input
+            type="password"
+            id="reg-password"
+            placeholder="********"
+            required
+          />
+        </label>
+
+        <label>
+          Confirm password
+          <input
+            type="password"
+            id="reg-password-confirm"
+            placeholder="********"
+            required
+          />
+        </label>
+
+        <button class="secondary-btn" type="submit">
+          Finish registration
+        </button>
+      </form>
+
+      <!-- Общий блок сообщений об ошибках / успехе -->
+      <div id="auth-message" class="auth-message"></div>
+    </section>
+
+    <!-- Нижняя плашка -->
+    <div class="bottom-wrapper">
+      <footer class="bottom-bar">
+        <span class="contact-text">
+          Demo only · Data stored in browser
+        </span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Общий JS -->
+  <script src="script.js"></script>
 </body>
 </html>

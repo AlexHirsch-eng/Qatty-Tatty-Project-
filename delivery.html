@@ -1,55 +1,87 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Qatty Tatty - Доставка</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Qatty Tatty – Delivery</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-    <div class="delivery-container">
-        <header class="simple-header">
-            <h1>Checkout & Delivery</h1>
-        </header>
+<body data-page="delivery">
+  <div class="app-shell">
+    <header class="top-bar">
+      <div class="top-left">
+        <button class="theme-toggle" type="button" aria-label="Toggle theme">
+          <span class="toggle-circle"></span>
+        </button>
+      </div>
+      <div class="top-center">
+        <span class="logo-main">Qatty Tatty</span>
+      </div>
+      <div class="top-right">
+        <button
+          class="top-link"
+          type="button"
+          onclick="location.href='index.html'">
+          Main
+        </button>
+      </div>
+    </header>
 
-        <div class="delivery-layout">
-            <section class="delivery-form">
-                <h3>Delivery Details</h3>
-                <form>
-                    <label>Street & Building</label>
-                    <input type="text" class="input-field" placeholder="e.g., Abay 109A" required>
-                    
-                    <label>Apartment/Office</label>
-                    <input type="text" class="input-field" placeholder="Apt 42">
-                    
-                    <label>Notes for Courier</label>
-                    <textarea class="input-field" placeholder="Call me when you arrive"></textarea>
-                    
-                    <div class="payment-methods">
-                        <h4>Payment Method</h4>
-                        <label><input type="radio" name="pay" checked> Kaspi.kz (QR)</label> <label><input type="radio" name="pay"> Cash to Courier</label>
-                    </div>
+    <h1 class="page-title">Delivery details</h1>
+    <p class="page-subtitle">Tell us where to bring your pancakes</p>
 
-                    <button type="submit" class="btn-main">Confirm & Pay</button>
-                </form>
-            </section>
+    <!-- Форма доставки. Данные сохраняем в localStorage как "последнюю заявку" -->
+    <form id="delivery-form" class="form">
+      <label>
+        Name
+        <input type="text" id="delivery-name" placeholder="Your name" />
+      </label>
+      <label>
+        Phone
+        <input type="tel" id="delivery-phone" placeholder="+7700..." />
+      </label>
+      <label>
+        Address
+        <input
+          type="text"
+          id="delivery-address"
+          placeholder="Street, house, entrance"
+        />
+      </label>
+      <label>
+        Apartment / floor
+        <input
+          type="text"
+          id="delivery-apartment"
+          placeholder="e.g. 45, 8th floor"
+        />
+      </label>
+      <label>
+        Comment for courier
+        <textarea
+          id="delivery-comment"
+          placeholder="Code from entrance, special notes"></textarea>
+      </label>
+      <button class="primary-btn" type="submit">
+        Confirm delivery
+      </button>
+    </form>
 
-            <aside class="order-summary">
-                <h3>Your Order</h3>
-                <div class="summary-item">
-                    <span>Classic Pancake (x2)</span>
-                    <span>10.00 $</span>
-                </div>
-                <div class="summary-item">
-                    <span>Delivery Fee</span>
-                    <span>2.00 $</span>
-                </div>
-                <hr>
-                <div class="total">
-                    <strong>Total:</strong>
-                    <strong>12.00 $</strong>
-                </div>
-            </aside>
-        </div>
+    <!-- Сообщение об успешном сохранении/ошибках -->
+    <div id="delivery-message" class="delivery-message"></div>
+
+    <div class="bottom-wrapper">
+      <footer class="bottom-bar">
+        <button
+          class="about-link"
+          type="button"
+          onclick="location.href='index.html'">
+          Main page
+        </button>
+        <span class="contact-text">+77005292008</span>
+      </footer>
     </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

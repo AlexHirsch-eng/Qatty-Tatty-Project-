@@ -1,113 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Qatty Tatty – Menu</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Qatty Tatty – Menu</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-<div class="app-shell">
-
-    <!-- Верхняя полоса -->
-    <header class="top-nav">
-        <button class="user-pill">
-            <span class="avatar-circle"></span>
-            <span class="user-pill-text">HI ARSEN!</span>
+<body data-page="menu">
+  <div class="app-shell">
+    <!-- Общий хедер: оставляем структуру такой же, как на других страницах -->
+    <header class="top-bar">
+      <div class="top-left">
+        <button class="theme-toggle" type="button" aria-label="Toggle theme">
+          <span class="toggle-circle"></span>
         </button>
+        <button class="user-pill" type="button">
+          MENU
+        </button>
+      </div>
 
-        <div class="logo-mid">
-            Qatty Tatty
-        </div>
+      <div class="top-center">
+        <span class="logo-main">Qatty Tatty</span>
+      </div>
 
-        <div class="top-right">
-            <div class="lang-select">
-                <span>English</span>
-                <span class="lang-arrow">▾</span>
-            </div>
-            <div class="search-small">
-                <input type="text" placeholder="Search..." />
-            </div>
-        </div>
+      <div class="top-right">
+        <button
+          class="top-link"
+          type="button"
+          onclick="location.href='login.html'">
+          Login
+        </button>
+        <button
+          class="top-link"
+          type="button"
+          onclick="location.href='profile.html'">
+          Profile
+        </button>
+      </div>
     </header>
 
-    <!-- Макет с сайдбаром -->
-    <div class="layout-with-sidebar">
+    <!-- Заголовок и подпись страницы -->
+    <h1 class="page-title">Our desserts</h1>
+    <p class="page-subtitle">Full list of pancakes from Qatty Tatty</p>
 
-        <aside class="sidebar">
-            <div class="sidebar-user">
-                <div class="big-avatar"></div>
-                <div class="sidebar-name">ARSEN!</div>
-            </div>
+    <!-- Сетка всех карточек меню -->
+    <section class="cards-grid" id="cards-grid"></section>
 
-            <nav class="sidebar-nav">
-                <ul>
-                    <li>Date of birth</li>
-                    <li>Address</li>
-                    <li>Phone number</li>
-                    <li>Orders history</li>
-                    <li>Cart</li>
-                    <li onclick="location.href='admin.html'">Admin page</li>
-                    <li>Change Menu</li>
-                </ul>
-            </nav>
-
-            <div class="sidebar-footer">
-                <button class="help-link">Help</button>
-            </div>
-        </aside>
-
-        <main class="main-area main-area-with-sidebar">
-
-            <!-- Полоса с фильтром -->
-            <div class="filter-bar">
-                <div class="filter-controls">
-                    <select>
-                        <option>Filter</option>
-                        <option>Sweet</option>
-                        <option>Vegan</option>
-                    </select>
-                </div>
-                <div class="filter-spacer"></div>
-            </div>
-
-            <!-- Сетка панкейков -->
-            <section class="pancake-grid">
-                <article class="pancake-card">
-                    <p class="pancake-name">Pancake Name</p>
-                    <img src="pancake_img.png" alt="Pancake">
-                </article>
-                <article class="pancake-card">
-                    <p class="pancake-name">Pancake Name</p>
-                    <img src="pancake_img.png" alt="Pancake">
-                </article>
-                <article class="pancake-card">
-                    <p class="pancake-name">Pancake Name</p>
-                    <img src="pancake_img.png" alt="Pancake">
-                </article>
-                <article class="pancake-card">
-                    <p class="pancake-name">Pancake Name</p>
-                    <img src="pancake_img.png" alt="Pancake">
-                </article>
-                <article class="pancake-card">
-                    <p class="pancake-name">Pancake Name</p>
-                    <img src="pancake_img.png" alt="Pancake">
-                </article>
-                <article class="pancake-card">
-                    <p class="pancake-name">Pancake Name</p>
-                    <img src="pancake_img.png" alt="Pancake">
-                </article>
-            </section>
-
-            <h1 class="footer-logo">QaTTy TaTTy</h1>
-        </main>
+    <!-- Нижняя панель с возвратом на главную -->
+    <div class="bottom-wrapper">
+      <footer class="bottom-bar">
+        <button
+          class="about-link"
+          type="button"
+          onclick="location.href='index.html'">
+          Back to main page
+        </button>
+        <span class="contact-text">+77005292008</span>
+      </footer>
     </div>
+  </div>
 
-    <footer class="bottom-bar">
-        <span>About us</span>
-        <span>To contact with us +77005292008</span>
-    </footer>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

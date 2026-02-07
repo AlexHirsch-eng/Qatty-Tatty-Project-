@@ -1,67 +1,90 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Qatty Tatty - Мой Профиль</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Qatty Tatty – Profile</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-    <div class="app-container">
-        <aside class="sidebar">
-            <div class="user-info">
-                <div class="avatar-circle"></div>
-                <h3>HI, ARSEN!</h3>
-            </div>
-            <nav class="side-nav">
-                <ul>
-                    <li class="active">Profile Settings</li>
-                    <li onclick="location.href='menu.html'">Back to Menu</li>
-                    <li>My Cart</li>
-                    <li>Log Out</li>
-                </ul>
-            </nav>
-        </aside>
+<body data-page="profile">
+  <div class="app-shell">
+    <!-- Верхняя панель -->
+    <header class="top-bar">
+      <div class="top-left">
+        <!-- Тёмная / светлая тема -->
+        <button class="theme-toggle" type="button" aria-label="Toggle theme">
+          <span class="toggle-circle"></span>
+        </button>
+      </div>
+      <div class="top-center">
+        <span class="logo-main">Qatty Tatty</span>
+      </div>
+      <div class="top-right">
+        <button
+          class="top-link"
+          type="button"
+          onclick="location.href='index.html'"
+        >
+          Main
+        </button>
+      </div>
+    </header>
 
-        <main class="main-content">
-            <section class="profile-card">
-                <h2>Personal Information</h2>
-                <div class="info-grid">
-                    <div class="info-item"><strong>Full Name:</strong> <span>Bakhitbekov Arsen</span></div>
-                    <div class="info-item"><strong>Email:</strong> <span>arsen@example.kz</span></div>
-                    <div class="info-item"><strong>Phone:</strong> <span>+7 707 123 45 67</span></div>
-                    <div class="info-item"><strong>Address:</strong> <span>Rayimbeka 162a</span></div> <div class="info-item"><strong>Birth Date:</strong> <span>24.10.1988</span></div>
-                </div>
-                <button class="btn-secondary">Edit Profile</button>
-            </section>
+    <!-- Заголовки -->
+    <h1 class="page-title">Your profile</h1>
+    <p class="page-subtitle">Basic information about your account</p>
 
-            <section class="order-history">
-                <h2>Order History</h2>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Date</th>
-                            <th>Total Price</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#001</td>
-                            <td>2025-01-01</td>
-                            <td>10.00 $</td>
-                            <td><span class="status-badge delivered">Delivered</span></td>
-                        </tr>
-                        <tr>
-                            <td>#004</td>
-                            <td>2025-01-01</td>
-                            <td>10.00 $</td>
-                            <td><span class="status-badge pending">Pending</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </main>
+    <!-- Основной блок профиля -->
+    <div id="profile-page-block" class="profile-page-block">
+      <div class="profile-page-row">
+        <span>Name</span>
+        <span id="profile-page-name">Guest</span>
+      </div>
+      <div class="profile-page-row">
+        <span>Phone</span>
+        <span id="profile-page-phone">-</span>
+      </div>
+      <div class="profile-page-row">
+        <span>Email</span>
+        <span id="profile-page-email">-</span>
+      </div>
+      <div class="profile-page-row">
+        <span>Role</span>
+        <span id="profile-page-role">User</span>
+      </div>
     </div>
+
+    <!-- Кнопки действий -->
+    <div class="button-row" style="margin-top:10px;">
+      <!-- Эта кнопка будет показана ТОЛЬКО для admin (через JS) -->
+      <button
+        id="admin-page-btn"
+        class="secondary-btn"
+        type="button"
+        onclick="location.href='admin.html'"
+      >
+        Admin page
+      </button>
+
+      <button id="logout-btn" class="primary-btn" type="button">
+        Logout
+      </button>
+    </div>
+
+    <!-- Нижняя плашка -->
+    <div class="bottom-wrapper">
+      <footer class="bottom-bar">
+        <button
+          class="about-link"
+          type="button"
+          onclick="location.href='index.html'"
+        >
+          Main page
+        </button>
+        <span class="contact-text">+77005292008</span>
+      </footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

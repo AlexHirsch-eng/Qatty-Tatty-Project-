@@ -1,68 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Qatty Tatty – Admin</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Qatty Tatty – Admin</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-<div class="app-shell">
-
-    <!-- Верхняя полоса -->
-    <header class="top-nav">
-        <button class="user-pill" onclick="location.href='menu.html'">
-            <span class="avatar-circle"></span>
-            <span class="user-pill-text">HI ARSEN!</span>
+<body data-page="admin">
+  <div class="app-shell">
+    <header class="top-bar">
+      <div class="top-left">
+        <button class="theme-toggle" type="button" aria-label="Toggle theme">
+          <span class="toggle-circle"></span>
         </button>
+        <button class="user-pill" type="button">
+          ADMIN
+        </button>
+      </div>
 
-        <div class="logo-mid">
-            Qatty Tatty
-        </div>
+      <div class="top-center">
+        <span class="logo-main">Qatty Tatty Admin</span>
+      </div>
 
-        <div class="top-right">
-            <div class="lang-select">
-                <span>English</span>
-                <span class="lang-arrow">▾</span>
-            </div>
-        </div>
+      <div class="top-right">
+        <button
+          class="top-link"
+          type="button"
+          onclick="location.href='index.html'">
+          Main
+        </button>
+      </div>
     </header>
 
-    <main class="main-area admin-main">
-        <h2 class="admin-title">What we are changing Today</h2>
+    <h1 class="page-title">Menu management</h1>
+    <p class="page-subtitle">Add, delete pancakes and see quick report</p>
 
-        <section class="admin-grid">
-            <div class="admin-card">
-                <h3>Add</h3>
-                <p>Write name, description and type. Add image.</p>
-                <button class="btn-main">Add item</button>
-            </div>
+    <!-- Две колонки: форма и таблица меню -->
+    <main class="admin-layout">
+      <!-- Левая колонка – форма добавления нового блинчика -->
+      <section class="admin-section">
+        <h3 class="admin-section-title">Add new pancake</h3>
+        <div class="form">
+          <label>
+            Name
+            <input type="text" id="admin-name" placeholder="Name" />
+          </label>
+          <label>
+            Category
+            <select id="admin-category">
+              <option value="Sweet">Sweet</option>
+              <option value="Salty">Salty</option>
+              <option value="Vegan">Vegan</option>
+            </select>
+          </label>
+          <label>
+            Price, ₸
+            <input type="number" id="admin-price" placeholder="1500" />
+          </label>
+          <button id="admin-add" class="primary-btn" type="button">
+            Add pancake
+          </button>
+        </div>
+      </section>
 
-            <div class="admin-card">
-                <h3>Delete</h3>
-                <p>Write name, description and type.</p>
-                <button class="btn-main btn-danger">Delete item</button>
-            </div>
-
-            <div class="admin-card">
-                <h3>Records</h3>
-                <p>client id, order id, ...</p>
-            </div>
-        </section>
-
-        <section class="admin-report">
-            <h3>Make Report</h3>
-            <p>client id, order id, ...</p>
-        </section>
-
-        <h1 class="footer-logo">QaTTy TaTTy</h1>
+      <!-- Правая колонка – таблица текущего меню и отчёт -->
+      <section class="admin-section">
+        <h3 class="admin-section-title">Current menu</h3>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price, ₸</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-menu-body"></tbody>
+        </table>
+        <div class="button-row" style="margin-top:6px;">
+          <button id="admin-report" class="secondary-btn" type="button">
+            Update report
+          </button>
+        </div>
+        <!-- Здесь показываем краткую статистику по меню -->
+        <div id="report-box" class="report-box"></div>
+      </section>
     </main>
 
-    <footer class="bottom-bar">
-        <span>About us</span>
-        <span>To contact with us +77005292008</span>
-    </footer>
-</div>
+    <div class="bottom-wrapper">
+      <footer class="bottom-bar">
+        <button
+          class="about-link"
+          type="button"
+          onclick="location.href='index.html'">
+          Main page
+        </button>
+        <span class="contact-text">Local demo only</span>
+      </footer>
+    </div>
+  </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

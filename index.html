@@ -1,100 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Qatty Tatty – Home</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Qatty Tatty – Home</title>
+  <!-- Подключаем общий файл стилей -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-<div class="app-shell">
-
-    <!-- Верхняя полоса -->
-    <header class="top-nav">
-        <button class="user-pill" onclick="location.href='menu.html'">
-            <span class="avatar-circle"></span>
-            <span class="user-pill-text">HI ARSEN!</span>
+<!-- data-page нужен, чтобы JS понял, какую инициализацию запускать -->
+<body data-page="main">
+  <!-- Основная "карточка" приложения на фоне градиента -->
+  <div class="app-shell">
+    <!-- Верхняя панель навигации -->
+    <header class="top-bar">
+      <div class="top-left">
+        <!-- Переключатель темы (светлая/тёмная) -->
+        <button class="theme-toggle" type="button" aria-label="Toggle theme">
+          <span class="toggle-circle"></span>
         </button>
+        <!-- Пилюля с приветствием пользователя -->
+        <button class="user-pill" type="button">
+          HI USER !
+        </button>
+      </div>
 
-        <div class="logo-mid">
-            Qatty Tatty
+      <!-- Логотип по центру. По клику ведёт на главную -->
+      <div class="top-center">
+        <span class="logo-main">Qatty Tatty</span>
+      </div>
+
+      <div class="top-right">
+        <!-- Пока язык "фиктивный", чисто для UI -->
+        <div class="lang-select">
+          <span>English</span>
+          <span class="lang-arrow">▾</span>
         </div>
-
-        <div class="top-right">
-            <div class="lang-select">
-                <span>English</span>
-                <span class="lang-arrow">▾</span>
-            </div>
-
-            <div class="search-small">
-                <input type="text" placeholder="Search..." />
-            </div>
-
-            <!-- 🔹 КНОПКИ LOGIN / REGISTER -->
-            <div class="auth-buttons">
-                <button class="auth-btn" onclick="location.href='login.html'">
-                    Login
-                </button>
-                <button class="auth-btn" onclick="location.href='login.html'">
-                    Register
-                </button>
-            </div>
-        </div>
+        <!-- Ссылка на логин -->
+        <button class="top-link" type="button" onclick="location.href='login.html'">
+          Login
+        </button>
+        <!-- Кнопка открытия боковой панели профиля -->
+        <button class="top-link" type="button" id="profile-button">
+          Profile
+        </button>
+      </div>
     </header>
 
-    <!-- Контент страницы -->
-    <main class="main-area">
+    <!-- Верхние поля: слоган и строка поиска -->
+    <section class="top-inputs">
+      <!-- Слоган – просто read-only поле, чтобы не нажимать случайно -->
+      <input
+        type="text"
+        class="tagline-input"
+        value="Desserts are waiting for you"
+        readonly
+        aria-label="Tagline"
+      />
+      <!-- Поиск по названию десерта -->
+      <input
+        type="text"
+        class="search-input"
+        id="search-input"
+        placeholder="Search..."
+        aria-label="Search pancakes"
+      />
+    </section>
 
-        <!-- Полоса с фильтром и поиском -->
-        <div class="filter-bar">
-            <div class="filter-label">Desserts are waiting for you</div>
-            <div class="filter-controls">
-                <select>
-                    <option>Filter</option>
-                    <option>Sweet</option>
-                    <option>Vegan</option>
-                </select>
-                <input type="text" placeholder="Search..." />
-            </div>
-        </div>
+    <!-- Строка с фильтром и кнопками "Open full menu" / "Delivery" -->
+    <section class="filters-row">
+      <!-- ВАЖНО: расположение не меняем, только стилизуем -->
+      <select class="filter-select" id="filter-select" aria-label="Filter by category">
+        <option value="all">Filter</option>
+        <option value="Sweet">Sweet</option>
+        <option value="Salty">Salty</option>
+        <option value="Vegan">Vegan</option>
+      </select>
 
-        <!-- Сетка панкейков -->
-        <section class="pancake-grid">
-            <article class="pancake-card">
-                <p class="pancake-name">Pancake Name</p>
-                <img src="pancake_img.png" alt="Pancake">
-            </article>
-            <article class="pancake-card">
-                <p class="pancake-name">Pancake Name</p>
-                <img src="pancake_img.png" alt="Pancake">
-            </article>
-            <article class="pancake-card">
-                <p class="pancake-name">Pancake Name</p>
-                <img src="pancake_img.png" alt="Pancake">
-            </article>
-            <article class="pancake-card">
-                <p class="pancake-name">Pancake Name</p>
-                <img src="pancake_img.png" alt="Pancake">
-            </article>
-            <article class="pancake-card">
-                <p class="pancake-name">Pancake Name</p>
-                <img src="pancake_img.png" alt="Pancake">
-            </article>
-            <article class="pancake-card">
-                <p class="pancake-name">Pancake Name</p>
-                <img src="pancake_img.png" alt="Pancake">
-            </article>
-        </section>
+      <div class="filters-actions">
+        <button
+          class="filter-menu-btn"
+          type="button"
+          onclick="location.href='menu.html'">
+          Open full menu
+        </button>
+        <button
+          class="filter-menu-btn"
+          type="button"
+          onclick="location.href='delivery.html'">
+          Delivery
+        </button>
+      </div>
+    </section>
 
-        <h1 class="footer-logo">QaTTy TaTTy</h1>
-    </main>
+    <!-- Информация о количестве найденных позиций -->
+    <div id="results-info" class="results-info"></div>
 
-    <!-- Нижняя полоса -->
-    <footer class="bottom-bar">
-        <span>About us</span>
-        <span>To contact with us +77005292008</span>
-    </footer>
-</div>
+    <!-- Сетка карточек десертов -->
+    <section class="cards-grid" id="cards-grid"></section>
 
-<script src="script.js"></script>
+    <!-- Нижняя панель с логотипом и контактами -->
+    <div class="bottom-wrapper">
+      <section class="bottom-logo">
+        <span class="logo-main">Qatty Tatty</span>
+      </section>
+
+      <footer class="bottom-bar">
+        <span
+          class="about-link"
+          onclick="location.href='delivery.html'">
+          Delivery
+        </span>
+        <span class="contact-text">
+          To contact with us  +77005292008
+        </span>
+      </footer>
+    </div>
+
+    <!-- Боковая панель профиля, открывается по кнопке Profile -->
+    <aside class="profile-panel" id="profile-panel" aria-label="User profile panel">
+      <button
+        class="close-profile"
+        id="close-profile"
+        type="button"
+        aria-label="Close profile panel">
+        ×
+      </button>
+      <h3>User profile</h3>
+      <div class="profile-row">
+        <span class="profile-label">Name</span>
+        <span class="profile-value" id="profile-name">Guest</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">Phone</span>
+        <span class="profile-value" id="profile-phone">-</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">Email</span>
+        <span class="profile-value" id="profile-email">-</span>
+      </div>
+      <button
+        class="primary-profile-btn"
+        type="button"
+        onclick="location.href='profile.html'">
+        Open full profile
+      </button>
+    </aside>
+  </div>
+
+  <!-- Подключаем общий JS-файл -->
+  <script src="script.js"></script>
 </body>
 </html>
