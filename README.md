@@ -20,7 +20,7 @@ It is intended both as a study project and as a realistic prototype that can be 
     - name, surname  
     - phone number  
     - address  
-    - date of birth  
+    - date of  birth  
     - email  
     - password + confirm password
   - Password validation:
