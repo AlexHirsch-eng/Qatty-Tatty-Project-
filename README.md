@@ -1,5 +1,4 @@
 # 🍰 Qatty Tatty
-
 **Qatty Tatty** is a frontend prototype of a dessert (pancake) web application.  
 The project is based on a custom UI/UX design and implemented using pure **HTML, CSS, and JavaScript**.
 
