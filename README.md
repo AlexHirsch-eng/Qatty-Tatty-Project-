@@ -3,7 +3,6 @@
 The project is based on a custom UI/UX design and implemented using pure **HTML, CSS, and JavaScript**.
 
 It is intended both as a study project and as a realistic prototype that can be shown to a real client.
-
 ---
 ## ✨ Features
 
