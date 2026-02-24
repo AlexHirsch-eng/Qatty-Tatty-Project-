@@ -22,7 +22,7 @@ It is intended both as a study project and as a realistic prototype that can be 
     - date of  birth  
     - email  
     - password + confirm password
-  - Password validation:
+  Password validation:
     - at least **8 characters**
     - at least **one uppercase letter**
     - at least **one number**
