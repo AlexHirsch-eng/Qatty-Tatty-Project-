@@ -86,8 +86,7 @@ It is intended both as a study project and as a realistic prototype that can be 
 2. Open `index.html` (or `login.html`) in a web browser  
 3. No backend or server is required – everything works in the browser using `localStorage`
 
-### Demo flows
-
+### Demo flow
 - **Register & login as user**
   1. Open `login.html`
   2. Click **Register**, fill in the form
