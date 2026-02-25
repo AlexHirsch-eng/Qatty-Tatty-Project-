@@ -60,7 +60,6 @@ It is intended both as a study project and as a realistic prototype that can be 
   - Responsive layout for desktop and mobile
 
 ---
-
 ## 📁 Project Structure
 
 - `index.html` – Home page (search, filter, quick cards, profile side panel)
