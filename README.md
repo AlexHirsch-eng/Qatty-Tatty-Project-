@@ -1,19 +1,16 @@
 # 🍰 Qatty Tatty
-
 **Qatty Tatty** is a frontend prototype of a dessert (pancake) web application.  
 The project is based on a custom UI/UX design and implemented using pure **HTML, CSS, and JavaScript**.
 
 It is intended both as a study project and as a realistic prototype that can be shown to a real client.
-
 ---
-
 ## ✨ Features
 
 - 🥞 **Dessert catalog**
   - Pancake cards with category and price
   - Shared menu data between pages (stored in `localStorage`)
 
-- 🔎 **Search & filter**
+- 🔎  **Search & filter**
   - Live search by dessert name
   - Filter by category (Sweet / Salty / Vegan)
 
@@ -22,10 +19,10 @@ It is intended both as a study project and as a realistic prototype that can be 
     - name, surname  
     - phone number  
     - address  
-    - date of birth  
+    - date of  birth  
     - email  
     - password + confirm password
-  - Password validation:
+  Password validation:
     - at least **8 characters**
     - at least **one uppercase letter**
     - at least **one number**
@@ -63,7 +60,6 @@ It is intended both as a study project and as a realistic prototype that can be 
   - Responsive layout for desktop and mobile
 
 ---
-
 ## 📁 Project Structure
 
 - `index.html` – Home page (search, filter, quick cards, profile side panel)
@@ -89,8 +85,7 @@ It is intended both as a study project and as a realistic prototype that can be 
 2. Open `index.html` (or `login.html`) in a web browser  
 3. No backend or server is required – everything works in the browser using `localStorage`
 
-### Demo flows
-
+### Demo flow
 - **Register & login as user**
   1. Open `login.html`
   2. Click **Register**, fill in the form
