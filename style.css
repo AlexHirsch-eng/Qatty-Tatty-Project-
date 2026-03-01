@@ -1,11 +1,10 @@
-/* Reset base margins and simplify box model */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* ---------- THEME VARIABLES (light theme by default) ---------- */
+/* THEME VARIABLES */
 :root {
   --bg-gradient-from: #ffecd2;
   --bg-gradient-to: #fcb69f;
@@ -20,7 +19,6 @@
   --accent: #e19b73;
 }
 
-/* Same variables for dark theme, toggled via data-theme="dark" */
 body[data-theme="dark"] {
   --bg-gradient-from: #22182b;
   --bg-gradient-to: #161827;
@@ -35,7 +33,6 @@ body[data-theme="dark"] {
   --accent: #ffb86c;
 }
 
-/* Base body styles */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -49,11 +46,10 @@ body {
   color: var(--text-main);
 }
 
-/* ---------- MAIN APP CONTAINER ---------- */
-
+/* MAIN APP CONTAINER */
 .app-shell {
   width: 92%;
-  max-width: 1360px; /* Wider for desktop view */
+  max-width: 1360px;
   min-height: calc(100vh - 64px);
   background: var(--card-bg);
   border-radius: 32px;
@@ -68,15 +64,13 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-/* Slightly larger shell on very wide screens */
 @media (min-width: 1600px) {
   .app-shell {
     max-width: 1480px;
   }
 }
 
-/* ---------- TOP BAR ---------- */
-
+/* TOP BAR */
 .top-bar {
   display: flex;
   align-items: center;
@@ -90,8 +84,7 @@ body {
   gap: 8px;
 }
 
-/* ---------- THEME TOGGLE ---------- */
-
+/* THEME TOGGLE */
 .theme-toggle {
   width: 48px;
   height: 24px;
@@ -119,13 +112,11 @@ body {
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
-/* Toggle knob position in dark theme – shifted to the right */
 body[data-theme="dark"] .toggle-circle {
   transform: translateX(22px);
 }
 
-/* ---------- USER PILL ---------- */
-
+/* USER PILL */
 .user-pill {
   border: none;
   border-radius: 999px;
@@ -139,7 +130,6 @@ body[data-theme="dark"] .toggle-circle {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
-/* Center: logo */
 .top-center {
   flex: 1;
   display: flex;
@@ -152,7 +142,6 @@ body[data-theme="dark"] .toggle-circle {
   font-size: 28px;
 }
 
-/* Right part of header */
 .top-right {
   display: flex;
   align-items: center;
@@ -172,7 +161,13 @@ body[data-theme="dark"] .toggle-circle {
   font-size: 10px;
 }
 
-/* Text buttons on top-right */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* top-link used for nav and small buttons */
 .top-link {
   border: none;
   background: transparent;
@@ -187,8 +182,7 @@ body[data-theme="dark"] .toggle-circle {
   opacity: 0.8;
 }
 
-/* ---------- TAGLINE + SEARCH ---------- */
-
+/* TAGLINE + SEARCH */
 .top-inputs {
   display: grid;
   grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
@@ -196,7 +190,6 @@ body[data-theme="dark"] .toggle-circle {
   margin-top: 14px;
 }
 
-/* Shared style for tagline and search input */
 .tagline-input,
 .search-input {
   width: 100%;
@@ -209,7 +202,6 @@ body[data-theme="dark"] .toggle-circle {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
-/* Tagline is more muted */
 .tagline-input {
   color: var(--text-muted);
 }
@@ -221,17 +213,21 @@ body[data-theme="dark"] .toggle-circle {
   box-shadow: 0 0 0 2px rgba(225, 155, 115, 0.35);
 }
 
-/* ---------- FILTER ROW ---------- */
-
+/* FILTER ROW */
 .filters-row {
   margin-top: 12px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 14px;
+  flex-wrap: wrap;
 }
 
-/* Filter <select> – left side */
+.top-link.active {
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+}
+
 .filter-select {
   min-width: 170px;
   border-radius: 999px;
@@ -248,14 +244,12 @@ body[data-theme="dark"] .toggle-circle {
   background-repeat: no-repeat;
 }
 
-/* Container with "Open full menu" and "Delivery" buttons */
 .filters-actions {
   display: flex;
   align-items: center;
   gap: 18px;
 }
 
-/* Text buttons on the right of filter row */
 .filter-menu-btn {
   border: none;
   background: transparent;
@@ -266,7 +260,6 @@ body[data-theme="dark"] .toggle-circle {
   position: relative;
 }
 
-/* Small underline animation on hover */
 .filter-menu-btn::after {
   content: "";
   position: absolute;
@@ -284,8 +277,7 @@ body[data-theme="dark"] .toggle-circle {
   transform: scaleX(1);
 }
 
-/* ---------- CARDS GRID ---------- */
-
+/* CARDS GRID */
 .cards-grid {
   margin-top: 16px;
   display: grid;
@@ -294,7 +286,6 @@ body[data-theme="dark"] .toggle-circle {
   padding-bottom: 12px;
 }
 
-/* Single pancake card */
 .pancake-card {
   background: var(--surface-soft);
   border-radius: 18px;
@@ -313,14 +304,12 @@ body[data-theme="dark"] .toggle-circle {
   background: rgba(255, 255, 255, 0.96);
 }
 
-/* Pancake image */
 .pancake-card img {
   width: 100%;
   border-radius: 14px;
   object-fit: cover;
 }
 
-/* Pancake name */
 .pancake-name {
   font-size: 14px;
   text-align: center;
@@ -328,13 +317,35 @@ body[data-theme="dark"] .toggle-circle {
   font-weight: 600;
 }
 
-/* Category text */
 .pancake-category {
   font-size: 11px;
   color: var(--text-muted);
 }
+.pancake-price {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-top: 2px;
+}
 
-/* Placeholder when nothing found */
+.pancake-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.pancake-availability {
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.pancake-availability.ok {
+  color: #27ae60; /* зелёный */
+}
+
+.pancake-availability.no {
+  color: #c0392b; /* красный */
+}
 .empty-state {
   grid-column: 1 / -1;
   text-align: center;
@@ -342,20 +353,17 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-muted);
 }
 
-/* Small info text about number of items */
 .results-info {
   margin-top: 6px;
   font-size: 11px;
   color: var(--text-muted);
 }
 
-/* ---------- BOTTOM BAR ---------- */
-
+/* BOTTOM BAR */
 .bottom-wrapper {
   margin-top: auto;
 }
 
-/* Logo at bottom center */
 .bottom-logo {
   margin-top: 10px;
   display: flex;
@@ -363,7 +371,6 @@ body[data-theme="dark"] .toggle-circle {
   padding: 6px 0 4px;
 }
 
-/* Colored band at the bottom */
 .bottom-bar {
   background: var(--surface-accent);
   margin: 0 -26px -20px;
@@ -375,7 +382,12 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-main);
 }
 
-/* Link on bottom-left */
+.bottom-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .about-link {
   border: none;
   background: transparent;
@@ -389,8 +401,7 @@ body[data-theme="dark"] .toggle-circle {
   text-align: right;
 }
 
-/* ---------- PROFILE SIDE PANEL ---------- */
-
+/* PROFILE SIDE PANEL */
 .profile-panel {
   position: absolute;
   top: 0;
@@ -413,7 +424,6 @@ body[data-theme="dark"] .toggle-circle {
   transform: translateX(0);
 }
 
-/* Close button for side panel */
 .close-profile {
   align-self: flex-end;
   border: none;
@@ -422,7 +432,6 @@ body[data-theme="dark"] .toggle-circle {
   cursor: pointer;
 }
 
-/* One info row inside side panel */
 .profile-row {
   display: flex;
   flex-direction: column;
@@ -439,7 +448,6 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-main);
 }
 
-/* Button to open full profile page */
 .primary-profile-btn {
   margin-top: 10px;
   border: none;
@@ -451,8 +459,7 @@ body[data-theme="dark"] .toggle-circle {
   cursor: pointer;
 }
 
-/* ---------- GENERIC FORM STYLES (login / delivery / admin) ---------- */
-
+/* GENERIC FORM STYLES */
 .page-title {
   margin-top: 18px;
   font-size: 24px;
@@ -479,7 +486,6 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-main);
 }
 
-/* Inputs/selects/textarea for all forms */
 .form input,
 .form select,
 .form textarea {
@@ -498,7 +504,6 @@ body[data-theme="dark"] .toggle-circle {
   min-height: 80px;
 }
 
-/* Primary button (orange) */
 .primary-btn {
   border: none;
   border-radius: 999px;
@@ -517,7 +522,6 @@ body[data-theme="dark"] .toggle-circle {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
-/* Secondary button (pale) */
 .secondary-btn {
   border: none;
   border-radius: 999px;
@@ -529,22 +533,13 @@ body[data-theme="dark"] .toggle-circle {
   width: 100%;
 }
 
-/* Row of two or more buttons */
 .button-row {
   display: flex;
   gap: 10px;
   margin-top: 10px;
 }
 
-.info-text-small {
-  margin-top: 10px;
-  font-size: 11px;
-  text-align: center;
-  color: var(--text-muted);
-}
-
-/* ---------- ADMIN PAGE ---------- */
-
+/* ADMIN PAGE */
 .admin-layout {
   margin-top: 18px;
   display: grid;
@@ -553,7 +548,6 @@ body[data-theme="dark"] .toggle-circle {
   font-size: 11px;
 }
 
-/* Each admin block (form or table) */
 .admin-section {
   background: var(--surface-soft);
   border-radius: 16px;
@@ -567,7 +561,6 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-main);
 }
 
-/* Menu table in admin */
 .admin-table {
   width: 100%;
   border-collapse: collapse;
@@ -585,7 +578,6 @@ body[data-theme="dark"] .toggle-circle {
   background: rgba(0, 0, 0, 0.02);
 }
 
-/* Container for action buttons inside table */
 .admin-actions {
   display: flex;
   gap: 4px;
@@ -599,7 +591,6 @@ body[data-theme="dark"] .toggle-circle {
   cursor: pointer;
 }
 
-/* Colors for buttons inside table */
 .admin-btn.primary {
   background: var(--accent);
   color: #ffffff;
@@ -610,7 +601,6 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-main);
 }
 
-/* Text box with simple report in admin */
 .report-box {
   margin-top: 8px;
   padding: 8px 9px;
@@ -620,8 +610,7 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-main);
 }
 
-/* ---------- PROFILE PAGE ---------- */
-
+/* PROFILE PAGE */
 .profile-page-block {
   margin-top: 18px;
   background: var(--surface-soft);
@@ -639,8 +628,7 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-main);
 }
 
-/* ---------- DELIVERY PAGE ---------- */
-
+/* DELIVERY PAGE */
 .delivery-message {
   margin-top: 12px;
   font-size: 11px;
@@ -648,8 +636,7 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-muted);
 }
 
-/* ---------- RESPONSIVE (MOBILE) ---------- */
-
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .app-shell {
     border-radius: 0;
@@ -670,16 +657,13 @@ body[data-theme="dark"] .toggle-circle {
 
   .bottom-bar {
     margin: 0 -26px -14px;
-  }
-
-  .admin-layout {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 }
 
-/* ================= AUTH (LOGIN / REGISTRATION) ================= */
-
-/* Wrapper for login & registration blocks */
+/* AUTH (LOGIN / REGISTRATION) */
 .auth-block {
   margin-top: 20px;
   padding: 16px;
@@ -688,7 +672,6 @@ body[data-theme="dark"] .toggle-circle {
   border: 1px solid var(--border-soft);
 }
 
-/* Section title inside auth blocks */
 .auth-title {
   font-size: 18px;
   text-align: center;
@@ -696,7 +679,6 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-main);
 }
 
-/* Small text between login and register */
 .auth-divider {
   margin-top: 16px;
   margin-bottom: 8px;
@@ -705,7 +687,6 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-muted);
 }
 
-/* Block with admin keyword input (по умолчанию мы его скрываем классом .hidden) */
 .admin-key-block {
   margin-top: 6px;
 }
@@ -716,7 +697,6 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-muted);
 }
 
-/* Message under forms (errors / success) */
 .auth-message {
   margin-top: 10px;
   font-size: 12px;
@@ -724,17 +704,14 @@ body[data-theme="dark"] .toggle-circle {
   color: var(--text-muted);
 }
 
-/* Error state */
 .auth-message.error {
   color: #c0392b;
 }
 
-/* Success state */
 .auth-message.success {
   color: #2ecc71;
 }
 
-/* Simple helper class to hide blocks (used for registration and admin-key) */
 .hidden {
   display: none;
 }

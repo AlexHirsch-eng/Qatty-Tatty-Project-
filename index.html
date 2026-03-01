@@ -3,51 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <title>Qatty Tatty – Home</title>
-  <!-- Подключаем общий файл стилей -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<!-- data-page нужен, чтобы JS понял, какую инициализацию запускать -->
+
 <body data-page="main">
-  <!-- Основная "карточка" приложения на фоне градиента -->
   <div class="app-shell">
-    <!-- Верхняя панель навигации -->
     <header class="top-bar">
       <div class="top-left">
-        <!-- Переключатель темы (светлая/тёмная) -->
         <button class="theme-toggle" type="button" aria-label="Toggle theme">
           <span class="toggle-circle"></span>
         </button>
-        <!-- Пилюля с приветствием пользователя -->
         <button class="user-pill" type="button">
           HI USER !
         </button>
       </div>
 
-      <!-- Логотип по центру. По клику ведёт на главную -->
       <div class="top-center">
         <span class="logo-main">Qatty Tatty</span>
       </div>
 
       <div class="top-right">
-        <!-- Пока язык "фиктивный", чисто для UI -->
         <div class="lang-select">
           <span>English</span>
           <span class="lang-arrow">▾</span>
         </div>
-        <!-- Ссылка на логин -->
-        <button class="top-link" type="button" onclick="location.href='login.html'">
-          Login
-        </button>
-        <!-- Кнопка открытия боковой панели профиля -->
+        <nav class="main-nav">
+          <button class="top-link active" type="button" onclick="location.href='index.html'">Main</button>
+          <button class="top-link" type="button" onclick="location.href='menu.html'">Menu</button>
+          <button class="top-link" type="button" onclick="location.href='delivery.html'">Delivery</button>
+          <button class="top-link" type="button" onclick="location.href='login.html'">Login</button>
+        </nav>
         <button class="top-link" type="button" id="profile-button">
-          Profile
+          Quick profile
         </button>
       </div>
     </header>
 
-    <!-- Верхние поля: слоган и строка поиска -->
     <section class="top-inputs">
-      <!-- Слоган – просто read-only поле, чтобы не нажимать случайно -->
       <input
         type="text"
         class="tagline-input"
@@ -55,7 +47,6 @@
         readonly
         aria-label="Tagline"
       />
-      <!-- Поиск по названию десерта -->
       <input
         type="text"
         class="search-input"
@@ -65,9 +56,8 @@
       />
     </section>
 
-    <!-- Строка с фильтром и кнопками "Open full menu" / "Delivery" -->
+    <!-- Filter + Sort теперь стоят рядом -->
     <section class="filters-row">
-      <!-- ВАЖНО: расположение не меняем, только стилизуем -->
       <select class="filter-select" id="filter-select" aria-label="Filter by category">
         <option value="all">Filter</option>
         <option value="Sweet">Sweet</option>
@@ -75,47 +65,33 @@
         <option value="Vegan">Vegan</option>
       </select>
 
-      <div class="filters-actions">
-        <button
-          class="filter-menu-btn"
-          type="button"
-          onclick="location.href='menu.html'">
-          Open full menu
-        </button>
-        <button
-          class="filter-menu-btn"
-          type="button"
-          onclick="location.href='delivery.html'">
-          Delivery
-        </button>
-      </div>
+      <select class="filter-select" id="sort-select" aria-label="Sort by">
+        <option value="default">Sort</option>
+        <option value="price-asc">Price ↑</option>
+        <option value="price-desc">Price ↓</option>
+        <option value="name-asc">Name A–Z</option>
+      </select>
     </section>
 
-    <!-- Информация о количестве найденных позиций -->
     <div id="results-info" class="results-info"></div>
 
-    <!-- Сетка карточек десертов -->
     <section class="cards-grid" id="cards-grid"></section>
 
-    <!-- Нижняя панель с логотипом и контактами -->
     <div class="bottom-wrapper">
       <section class="bottom-logo">
         <span class="logo-main">Qatty Tatty</span>
       </section>
 
       <footer class="bottom-bar">
-        <span
-          class="about-link"
-          onclick="location.href='delivery.html'">
-          Delivery
-        </span>
-        <span class="contact-text">
-          To contact with us  +77005292008
-        </span>
+        <div class="about-text">
+          Qatty Tatty — cozy place with homemade pancakes and desserts in Almaty.
+        </div>
+        <div class="contact-text">
+          Phone: +77005292008 · Email: qattytatty@mail.com · Instagram: @qattytatty
+        </div>
       </footer>
     </div>
 
-    <!-- Боковая панель профиля, открывается по кнопке Profile -->
     <aside class="profile-panel" id="profile-panel" aria-label="User profile panel">
       <button
         class="close-profile"
@@ -146,7 +122,6 @@
     </aside>
   </div>
 
-  <!-- Подключаем общий JS-файл -->
   <script src="script.js"></script>
 </body>
 </html>

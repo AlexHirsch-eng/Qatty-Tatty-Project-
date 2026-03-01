@@ -17,19 +17,18 @@
         <span class="logo-main">Qatty Tatty</span>
       </div>
       <div class="top-right">
-        <button
-          class="top-link"
-          type="button"
-          onclick="location.href='index.html'">
-          Main
-        </button>
+        <nav class="main-nav">
+          <button class="top-link" type="button" onclick="location.href='index.html'">Main</button>
+          <button class="top-link" type="button" onclick="location.href='menu.html'">Menu</button>
+          <button class="top-link active" type="button" onclick="location.href='delivery.html'">Delivery</button>
+          <button class="top-link" type="button" onclick="location.href='login.html'">Login</button>
+        </nav>
       </div>
     </header>
 
     <h1 class="page-title">Delivery details</h1>
     <p class="page-subtitle">Tell us where to bring your pancakes</p>
 
-    <!-- Форма доставки. Данные сохраняем в localStorage как "последнюю заявку" -->
     <form id="delivery-form" class="form">
       <label>
         Name
@@ -48,7 +47,7 @@
         />
       </label>
       <label>
-        Apartment / floor
+        Apartment
         <input
           type="text"
           id="delivery-apartment"
@@ -66,18 +65,16 @@
       </button>
     </form>
 
-    <!-- Сообщение об успешном сохранении/ошибках -->
     <div id="delivery-message" class="delivery-message"></div>
 
     <div class="bottom-wrapper">
       <footer class="bottom-bar">
-        <button
-          class="about-link"
-          type="button"
-          onclick="location.href='index.html'">
-          Main page
-        </button>
-        <span class="contact-text">+77005292008</span>
+        <div class="about-text">
+          Qatty Tatty — cozy place with homemade pancakes and desserts in Almaty.
+        </div>
+        <div class="contact-text">
+          Phone: +77005292008 · Email: qattytatty@mail.com · Instagram: @qattytatty
+        </div>
       </footer>
     </div>
   </div>

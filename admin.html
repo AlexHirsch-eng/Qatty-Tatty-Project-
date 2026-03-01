@@ -22,21 +22,19 @@
       </div>
 
       <div class="top-right">
-        <button
-          class="top-link"
-          type="button"
-          onclick="location.href='index.html'">
-          Main
-        </button>
+        <nav class="main-nav">
+          <button class="top-link" type="button" onclick="location.href='index.html'">Main</button>
+          <button class="top-link" type="button" onclick="location.href='menu.html'">Menu</button>
+          <button class="top-link" type="button" onclick="location.href='delivery.html'">Delivery</button>
+          <button class="top-link active" type="button" onclick="location.href='login.html'">Login</button>
+        </nav>
       </div>
     </header>
 
     <h1 class="page-title">Menu management</h1>
     <p class="page-subtitle">Add, delete pancakes and see quick report</p>
 
-    <!-- Две колонки: форма и таблица меню -->
     <main class="admin-layout">
-      <!-- Левая колонка – форма добавления нового блинчика -->
       <section class="admin-section">
         <h3 class="admin-section-title">Add new pancake</h3>
         <div class="form">
@@ -62,7 +60,6 @@
         </div>
       </section>
 
-      <!-- Правая колонка – таблица текущего меню и отчёт -->
       <section class="admin-section">
         <h3 class="admin-section-title">Current menu</h3>
         <table class="admin-table">
@@ -81,20 +78,18 @@
             Update report
           </button>
         </div>
-        <!-- Здесь показываем краткую статистику по меню -->
         <div id="report-box" class="report-box"></div>
       </section>
     </main>
 
     <div class="bottom-wrapper">
       <footer class="bottom-bar">
-        <button
-          class="about-link"
-          type="button"
-          onclick="location.href='index.html'">
-          Main page
-        </button>
-        <span class="contact-text">Local demo only</span>
+        <div class="about-text">
+          Qatty Tatty — cozy place with homemade pancakes and desserts in Almaty.
+        </div>
+        <div class="contact-text">
+          Phone: +77005292008 · Email: qattytatty@mail.com · Instagram: @qattytatty
+        </div>
       </footer>
     </div>
   </div>

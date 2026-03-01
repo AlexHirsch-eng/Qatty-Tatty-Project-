@@ -3,50 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <title>Qatty Tatty – Login / Registration</title>
-  <!-- Общие стили проекта -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<!-- data-page говорит script.js, какую init-функцию запускать -->
 <body data-page="login">
   <div class="app-shell">
-    <!-- Верхняя панель -->
+    <!-- TOP BAR -->
     <header class="top-bar">
       <div class="top-left">
-        <!-- Переключатель темы (light / dark) -->
         <button class="theme-toggle" type="button" aria-label="Toggle theme">
           <span class="toggle-circle"></span>
         </button>
       </div>
 
-      <!-- Логотип по центру -->
       <div class="top-center">
         <span class="logo-main">Qatty Tatty</span>
       </div>
 
       <div class="top-right">
-        <!-- Кнопка возврата на главную -->
-        <button
-          class="top-link"
-          type="button"
-          onclick="location.href='index.html'"
-        >
-          Main
-        </button>
+        <nav class="main-nav">
+          <button class="top-link" type="button" onclick="location.href='index.html'">Main</button>
+          <button class="top-link" type="button" onclick="location.href='menu.html'">Menu</button>
+          <button class="top-link" type="button" onclick="location.href='delivery.html'">Delivery</button>
+          <button class="top-link active" type="button" onclick="location.href='login.html'">Login</button>
+        </nav>
       </div>
     </header>
 
-    <!-- Заголовок страницы -->
     <h1 class="page-title">Welcome to Qatty Tatty</h1>
     <p class="page-subtitle">
       Login to your account or create a new one
     </p>
 
-    <!-- ================== БЛОК ЛОГИНА ================== -->
+    <!-- LOGIN BLOCK -->
     <section class="auth-block">
       <h2 class="auth-title">Login</h2>
 
-      <!-- Форма логина: email + password + (скрытый) admin keyword -->
       <form id="login-form" class="form">
         <label>
           Email
@@ -68,9 +60,6 @@
           />
         </label>
 
-        <!-- Блок для admin keyword.
-             Изначально скрыт (класс hidden). Появится после первого клика
-             по кнопке "Login as admin". -->
         <div id="admin-key-block" class="admin-key-block hidden">
           <label>
             Admin keyword
@@ -85,7 +74,6 @@
           </p>
         </div>
 
-        <!-- Две кнопки как раньше: логин как пользователь / как админ -->
         <div class="button-row">
           <button id="login-user" class="primary-btn" type="button">
             Login as user
@@ -95,7 +83,51 @@
           </button>
         </div>
 
-        <!-- Кнопка открытия регистрации -->
+        <!-- CHANGE PASSWORD (по секретному слову) -->
+        <div class="auth-divider">Want to change password?</div>
+        <button id="toggle-change-password" class="secondary-btn" type="button">
+          Change password using secret word
+        </button>
+
+        <div id="change-password-block" class="change-password-block hidden">
+          <p class="info-text-small">
+            We will use your email from the login form and the secret word you set during registration.
+          </p>
+
+          <div class="form">
+            <label>
+              Secret word
+              <input
+                type="text"
+                id="cp-secret"
+                placeholder="Your secret word"
+              />
+            </label>
+
+            <label>
+              New password
+              <input
+                type="password"
+                id="cp-new-password"
+                placeholder="New password"
+              />
+            </label>
+
+            <label>
+              Confirm new password
+              <input
+                type="password"
+                id="cp-new-password-confirm"
+                placeholder="Repeat new password"
+              />
+            </label>
+
+            <button id="change-password-btn" class="primary-btn" type="button">
+              Change password
+            </button>
+          </div>
+        </div>
+
         <div class="auth-divider">Don't have an account?</div>
         <button id="show-register" class="secondary-btn" type="button">
           Register
@@ -103,7 +135,7 @@
       </form>
     </section>
 
-    <!-- ================== БЛОК РЕГИСТРАЦИИ (СКРЫТ) ================== -->
+    <!-- REGISTER BLOCK -->
     <section id="register-section" class="auth-block hidden">
       <h2 class="auth-title">Create account</h2>
 
@@ -168,26 +200,38 @@
           />
         </label>
 
+        <label>
+          Secret word (for password reset)
+          <input
+            type="text"
+            id="reg-secret"
+            placeholder="Your secret word"
+            required
+          />
+        </label>
+
         <button class="secondary-btn" type="submit">
           Finish registration
         </button>
       </form>
-
-      <!-- Общий блок сообщений об ошибках / успехе -->
-      <div id="auth-message" class="auth-message"></div>
     </section>
 
-    <!-- Нижняя плашка -->
+    <!-- ОБЩИЙ БЛОК ДЛЯ СООБЩЕНИЙ (и логин, и регистрация, и смена пароля) -->
+    <div id="auth-message" class="auth-message"></div>
+
+    <!-- FOOTER -->
     <div class="bottom-wrapper">
       <footer class="bottom-bar">
-        <span class="contact-text">
-          Demo only · Data stored in browser
-        </span>
+        <div class="about-text">
+          Qatty Tatty — cozy place with homemade pancakes and desserts in Almaty.
+        </div>
+        <div class="contact-text">
+          Phone: +77005292008 · Email: qattytatty@mail.com · Instagram: @qattytatty
+        </div>
       </footer>
     </div>
   </div>
 
-  <!-- Общий JS -->
   <script src="script.js"></script>
 </body>
 </html>
